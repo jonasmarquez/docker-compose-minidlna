@@ -1,0 +1,17 @@
+version: "3.6"
+services:
+  # MiniDLNa - DLNa server
+  minidlna:
+    container_name: minidlna
+    hostname: minidlna
+    image: jonasmarquez/minidlna
+    restart: always
+    privileged: true
+    volumes:
+      - /media/VIDEO:/media/video
+      - ./minidlna.conf:/etc/minidlna/minidlna.conf:ro
+    environment:
+      - MINIDLNA_MEDIA_DIR_1=V,/media/video/Movies
+      - MINIDLNA_MEDIA_DIR_2=V,/media/video/TV_Shows
+      - MINIDLNA_MEDIA_DIR_3=V,/media/video/Concerts
+    network_mode: host
